@@ -4,19 +4,21 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var categoryRouter = require('./app/router/categoryRoute');
+var categoryRouter = require('./app/routes/categoryRoute');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/adminlte', express.static(path.join(__dirname, '/node_modules/admin-lte/')))
 
 app.use('/', categoryRouter);
 
