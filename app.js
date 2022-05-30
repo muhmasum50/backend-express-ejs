@@ -3,15 +3,14 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
-var categoryRouter = require('./app/routes/categoryRoute');
-
+var methodOverride = require('method-override')
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(methodOverride('_method'))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -20,7 +19,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/adminlte', express.static(path.join(__dirname, '/node_modules/admin-lte/')))
 
-app.use('/', categoryRouter);
+/** route */
+var categoryRouter = require('./app/routes/CategoryRouter');
+var dashboardRouter = require('./app/routes/DashboardRouter');
+app.use('/', dashboardRouter);
+app.use('/category', categoryRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
