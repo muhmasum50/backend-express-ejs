@@ -3,18 +3,27 @@ const CategoryModel = require('./../models/CategoryModel');
 module.exports = {
     index: async(request, response) => {
         try {
+            const alertMessage = request.flash("alertMessage");
+            const alertStatus = request.flash("alertStatus");
+
+            const alert = { message: alertMessage, status: alertStatus };
             const category = await CategoryModel.find();
 
-            response.render('content/admin/list_category', {category});
+            response.render('content/admin/list_category', {category, alert});
         } catch(error) {
-            console.log(error)
+            request.flash('alertMessage', `${error.message}`);
+            request.flash('alertStatus', 'danger');
+            response.redirect('/category');
+             
         }
     },
     create: async(request, response) => {
         try {
             response.render('content/admin/create_category');
         } catch(error) {
-            console.log(error)
+            request.flash('alertMessage', `${error.message}`);
+            request.flash('alertStatus', 'danger');
+            response.redirect('/category');
         }
     },
     store: async(request, response) => {
@@ -23,9 +32,14 @@ module.exports = {
             const category = CategoryModel({ name });
             await category.save();
 
+            request.flash('alertMessage', 'Berhasil menambahkan data kategori');
+            request.flash('alertStatus', 'success');
+
             response.redirect('/category');
         } catch(error) {
-            console.log(error)
+            request.flash('alertMessage', `${error.message}`);
+            request.flash('alertStatus', 'danger');
+            response.redirect('/category');
         }
     },
     edit: async(request, response) => {
@@ -35,7 +49,9 @@ module.exports = {
 
             response.render('content/admin/edit_category', {category});
         } catch(error) {
-            console.log(error)
+            request.flash('alertMessage', `${error.message}`);
+            request.flash('alertStatus', 'danger');
+            response.redirect('/category');
         }
     },
     update: async(request, response) => {
@@ -47,9 +63,14 @@ module.exports = {
                 _id: id
             }, {name});
 
+            request.flash('alertMessage', 'Berhasil mengubah data kategori');
+            request.flash('alertStatus', 'success');
+
             response.redirect('/category');
         } catch(error) {
-            console.log(error)
+            request.flash('alertMessage', `${error.message}`);
+            request.flash('alertStatus', 'danger');
+            response.redirect('/category');
         }
     },
     destroy: async (request, response) => {
@@ -59,9 +80,14 @@ module.exports = {
                 _id: id
             });
 
+            request.flash('alertMessage', 'Berhasil menghapus data kategori');
+            request.flash('alertStatus', 'success');
+
             response.redirect('/category');
         } catch(error) {
-            console.log(error)
+            request.flash('alertMessage', `${error.message}`);
+            request.flash('alertStatus', 'danger');
+            response.redirect('/category');
         }
     }
 
