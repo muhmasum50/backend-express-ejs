@@ -1,0 +1,76 @@
+<%- include ('../../templates/head.ejs')  %> 
+
+<div class="content-wrapper">
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Nominal</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active">Nominal</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="container-fluid">
+
+        <!-- flash message -->
+        <%- include ('../../templates/partials/flash_message.ejs')  %> 
+
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title float-right">
+                   <a class="btn btn-primary btn-sm" href="/nominal/create"><i class="fas fa-plus"></i> Tambah</a>
+                </h3>
+              </div>
+              <div class="card-body">
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Nama Koin</th>
+                      <th>Jumlah Koin</th>
+                      <th>Harga</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                
+                    <% for(let i=0; i<nominal.length; i++) { %>
+                      <tr>
+                        <td><%= i+ 1%></td>
+                        <td><%= nominal[i].coinName %> </td>
+                        <td><%= nominal[i].coinQuantity %> </td>
+                        <td><%= nominal[i].price %> </td>
+                        <td>
+                          <form method="POST" action="/nominal/delete/<%= nominal[i]._id %>?_method=DELETE">
+                            <a href="/nominal/edit/<%= nominal[i]._id %>" class="btn btn-warning btn-sm">
+                              <i class="fas fa-edit"></i>
+                            </a>
+                            <button class="btn btn-danger btn-sm">
+                              <i class="fas fa-trash"></i>
+                            </button>
+                          </form>
+                        </td>
+                      </tr>
+                    <% } %>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</div>
+
+<%- include ('../../templates/foot.ejs')  %> 

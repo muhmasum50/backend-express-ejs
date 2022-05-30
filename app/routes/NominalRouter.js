@@ -1,7 +1,7 @@
 var express = require('express');
 const { route } = require('express/lib/application');
 var router = express.Router();
-const { index, create, store, edit, update, destroy } = require('../controllers/CategoryController');
+const { index, create, store, edit, update, destroy } = require('../controllers/NominalController');
 
 router.get('/', index);
 router.get('/create', create)

@@ -31,10 +31,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/adminlte', express.static(path.join(__dirname, '/node_modules/admin-lte/')))
 
 /** route */
-var categoryRouter = require('./app/routes/CategoryRouter');
-var dashboardRouter = require('./app/routes/DashboardRouter');
+const dashboardRouter = require('./app/routes/DashboardRouter');
 app.use('/', dashboardRouter);
+const categoryRouter = require('./app/routes/CategoryRouter');
 app.use('/category', categoryRouter);
+const nominalRouter = require('./app/routes/NominalRouter');
+app.use('/nominal', nominalRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
