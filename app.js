@@ -37,6 +37,8 @@ const categoryRouter = require('./app/routes/CategoryRouter');
 app.use('/category', categoryRouter);
 const nominalRouter = require('./app/routes/NominalRouter');
 app.use('/nominal', nominalRouter);
+const voucherRouter = require('./app/routes/VoucherRouter');
+app.use('/voucher', voucherRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
