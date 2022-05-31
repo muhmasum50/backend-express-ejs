@@ -131,7 +131,6 @@ module.exports = {
                         }
 
                         await VoucherModel.findOneAndUpdate({_id: id}, {name, category, nominals, thumbnail: filename});
-                    
 
                         request.flash('alertMessage', 'Berhasil mengubah data voucher');
                         request.flash('alertStatus', 'success');
