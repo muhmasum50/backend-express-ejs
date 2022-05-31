@@ -88,9 +88,16 @@ module.exports = {
     edit: async(request, response) => {
         try {
             const { id } = request.params;
-            const voucher = await voucherModel.findOne({_id: id});
 
-            response.render('content/admin/edit_voucher', {voucher, coinType});
+            const category = await CategoryModel.find(); 
+            const nominal = await NominalModel.find();
+            const voucher = await VoucherModel.findOne({_id: id}).populate('category')
+            .populate('nominals');
+
+            const path_images =  request.protocol + '://' + request.get('host') + `/uploads/${voucher.thumbnail}`;
+
+            response.render('content/admin/edit_voucher', {voucher, category, nominal, path_images});
+
         } catch(error) {
             request.flash('alertMessage', `${error.message}`);
             request.flash('alertStatus', 'danger');
@@ -99,17 +106,52 @@ module.exports = {
     },
     update: async(request, response) => {
         try {
+
             const { id } = request.params;
-            const { coinName, coinQuantity, price } = request.body;
+            const { name, category, nominals } = request.body;
 
-            const voucher = await voucherModel.findOneAndUpdate({
-                _id: id
-            }, {coinName, coinQuantity, price});
+            if(request.file) {
+                let temp_path = request.file.path;
+                let originalExtension = request.file.originalname.split('.')[request.file.originalname.split('.').length - 1];
+                let filename = request.file.filename + '.' + originalExtension;
+                let target_path = path.resolve(config.ROOT_PATH, `public/uploads/${filename}`);
 
-            request.flash('alertMessage', 'Berhasil mengubah data voucher');
-            request.flash('alertStatus', 'success');
+                const src = fs.createReadStream(temp_path);
+                const dest = fs.createWriteStream(target_path);
 
-            response.redirect('/voucher');
+                src.pipe(dest);
+                src.on('end', async () => {
+                    try {
+
+                        const voucher = await VoucherModel.findOne({_id: id});
+
+                        let currentImage = `${config.ROOT_PATH}/public/uploads/${voucher.thumbnail}`;
+                        if(fs.existsSync(currentImage)) {
+                            fs.unlinkSync(currentImage);
+                        }
+
+                        await VoucherModel.findOneAndUpdate({_id: id}, {name, category, nominals, thumbnail: filename});
+                    
+
+                        request.flash('alertMessage', 'Berhasil mengubah data voucher');
+                        request.flash('alertStatus', 'success');
+                        response.redirect('/voucher');
+
+                    } catch (error) {
+                        request.flash('alertMessage', `${error.message}`);
+                        request.flash('alertStatus', 'danger');
+                        response.redirect('/voucher');
+                    }
+                })
+            }
+            else {
+                await VoucherModel.findOneAndUpdate({_id: id}, {name, category, nominals})
+    
+                request.flash('alertMessage', 'Berhasil mengubah data voucher');
+                request.flash('alertStatus', 'success');
+                response.redirect('/voucher');
+            }
+
         } catch(error) {
             request.flash('alertMessage', `${error.message}`);
             request.flash('alertStatus', 'danger');
@@ -119,9 +161,14 @@ module.exports = {
     destroy: async (request, response) => {
         try {
             const { id } = request.params;
-            const voucher = await voucherModel.findOneAndDelete({
+            const voucher = await VoucherModel.findOneAndDelete({
                 _id: id
             });
+
+            let currentImage = `${config.ROOT_PATH}/public/uploads/${voucher.thumbnail}`;
+            if(fs.existsSync(currentImage)) {
+                fs.unlinkSync(currentImage);
+            }
 
             request.flash('alertMessage', 'Berhasil menghapus data voucher');
             request.flash('alertStatus', 'success');

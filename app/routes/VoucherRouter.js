@@ -9,7 +9,7 @@ router.get('/', index);
 router.get('/create', create)
 router.post('/store', multer({ dest:os.tmpdir() }).single('image'), store)
 router.get('/edit/:id', edit)
-router.put('/update/:id', update)
+router.put('/update/:id', multer({ dest:os.tmpdir() }).single('image'), update)
 router.delete('/delete/:id', destroy)
 
 module.exports = router;
