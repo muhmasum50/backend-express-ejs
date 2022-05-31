@@ -39,6 +39,8 @@ const nominalRouter = require('./app/routes/NominalRouter');
 app.use('/nominal', nominalRouter);
 const voucherRouter = require('./app/routes/VoucherRouter');
 app.use('/voucher', voucherRouter);
+const bankRouter = require('./app/routes/BankRouter');
+app.use('/bank', bankRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
