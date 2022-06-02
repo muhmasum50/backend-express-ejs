@@ -4,6 +4,9 @@ var router = express.Router();
 const { index, create, store, edit, update, destroy } = require('../controllers/VoucherController');
 const multer = require('multer');
 const os = require('os')
+const { isLoginAdmin } = require('../middleware/auth');
+
+router.use(isLoginAdmin);
 
 router.get('/', index);
 router.get('/create', create)

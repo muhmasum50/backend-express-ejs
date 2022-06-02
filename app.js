@@ -17,7 +17,7 @@ app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
-    cookie: {}
+    cookie: { secure: false,  maxAge: 3600000 }
 }))
 app.use(flash());
 app.use(methodOverride('_method'))
@@ -32,7 +32,7 @@ app.use('/adminlte', express.static(path.join(__dirname, '/node_modules/admin-lt
 
 /** route */
 const dashboardRouter = require('./app/routes/DashboardRouter');
-app.use('/', dashboardRouter);
+app.use('/dashboard', dashboardRouter);
 const categoryRouter = require('./app/routes/CategoryRouter');
 app.use('/category', categoryRouter);
 const nominalRouter = require('./app/routes/NominalRouter');
@@ -45,6 +45,7 @@ const paymentRouter = require('./app/routes/PaymentRouter');
 app.use('/payment', paymentRouter);
 const authRouter = require('./app/routes/AuthRouter');
 app.use('/auth', authRouter);
+app.use('/', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

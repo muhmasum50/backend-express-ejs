@@ -1,8 +1,9 @@
 var express = require('express');
-const { route } = require('express/lib/application');
 var router = express.Router();
 const { index, create, store, edit, update, destroy } = require('../controllers/BankController');
+const { isLoginAdmin } = require('../middleware/auth');
 
+router.use(isLoginAdmin);
 router.get('/', index);
 router.get('/create', create)
 router.post('/store', store)

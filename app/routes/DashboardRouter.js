@@ -1,9 +1,10 @@
 var express = require('express');
-const { route } = require('express/lib/application');
 var router = express.Router();
 const { index } = require('../controllers/DashboardController');
+const { isLoginAdmin } = require('../middleware/auth');
 
 /* GET home page. */
+router.use(isLoginAdmin);
 router.get('/', index);
 
 module.exports = router;
