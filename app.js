@@ -46,6 +46,8 @@ app.use('/payment', paymentRouter);
 const authRouter = require('./app/routes/AuthRouter');
 app.use('/auth', authRouter);
 app.use('/', authRouter);
+const transactionRouter = require('./app/routes/TransactionRouter');
+app.use('/transaksi', transactionRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

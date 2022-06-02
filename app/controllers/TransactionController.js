@@ -1,0 +1,1 @@
+const TrxModel = require('./../models/TransactionModel');
