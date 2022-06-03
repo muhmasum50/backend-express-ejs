@@ -16,7 +16,7 @@ app.set('view engine', 'ejs');
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: { secure: false,  maxAge: 3600000 }
 }))
 app.use(flash());

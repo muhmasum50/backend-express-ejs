@@ -1,4 +1,4 @@
-const VoucherModel = require('./../models/voucherModel');
+const VoucherModel = require('./../models/VoucherModel');
 const CategoryModel = require('./../models/CategoryModel');
 const NominalModel = require('./../models/NominalModel');
 const path = require('path');
