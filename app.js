@@ -49,6 +49,13 @@ app.use('/', authRouter);
 const transactionRouter = require('./app/routes/TransactionRouter');
 app.use('/transaksi', transactionRouter);
 
+/** API */
+const landingAPIRouter = require('./app/routes/API/landing.api.router');
+app.use('/api/v1/landing', landingAPIRouter);
+
+const authAPIRouter = require('./app/routes/API/auth.api.router');
+app.use('/api/v1/auth', authAPIRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));

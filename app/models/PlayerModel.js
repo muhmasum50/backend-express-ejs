@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const HASH_ROUND = 10;
+
 let playerSchema = mongoose.Schema({
     email: {
         type: String,
@@ -18,7 +21,7 @@ let playerSchema = mongoose.Schema({
     },
     avatar: {
         type: String,
-        required: [true, 'Avatar harus diisi']
+        required: [false, 'Avatar harus diisi']
     },
     role: {
         type: String,
@@ -36,5 +39,20 @@ let playerSchema = mongoose.Schema({
         required: [true, 'status harus diisi']
     },
 }, {timestamps: true})
+
+playerSchema.path('email').validate(async function (value) {
+    try {
+        let player = await this.model('Player').findOne({email: value})
+        
+        return !player
+    } catch (error) {
+        throw error;
+    }
+}, attr => `${attr.value} sudah digunakan`)
+
+playerSchema.pre('save', function(next) {
+    this.password = bcrypt.hashSync(this.password, HASH_ROUND)
+    next()
+});
 
 module.exports = mongoose.model('Player', playerSchema);
