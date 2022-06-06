@@ -1,4 +1,5 @@
 const VoucherModel = require('../models/VoucherModel');
+const CategoryModel = require('../models/CategoryModel');
 
 module.exports = {
     landingPage: async(req, res) => {
@@ -39,5 +40,16 @@ module.exports = {
 
             res.status(500).json({ message: error.message || `Internal server error`});
         }
+    },
+    category: async(req, res) => {
+        try {
+            const cat = await CategoryModel.find()
+        
+            res.status(200).json({data: cat});
+        } catch (error) {
+
+            res.status(500).json({ message: error.message || `Internal server error`});
+        }
     }
+
 }

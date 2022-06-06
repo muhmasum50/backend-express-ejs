@@ -2,6 +2,8 @@ const PlayerModel = require('../models/PlayerModel');
 const path = require('path');
 const fs = require('fs');
 const config = require('../../config');
+const bcrypt = require('bcryptjs');
+const JSON_WEB_TOKEN = require('jsonwebtoken')
 
 module.exports = {
     register: async(req, res, next) => {
@@ -67,5 +69,50 @@ module.exports = {
 
             next(error)
         }
+    },
+    login: async(req, res, next) => {
+
+        const { username, password } = req.body;
+
+        PlayerModel.findOne({username: username}).then((player) => {
+            if(player) {
+                bcrypt.compare(password, player.password, (err, result) => {
+                    if(result) {
+                        const token = JSON_WEB_TOKEN.sign({
+                            player: {
+                               id: player._id,
+                               username: player.username,
+                               name: player.name,
+                               email: player.email,
+                               phoneNumber: player.phoneNumber,
+                               avatar: player.avatar
+                            }
+                        }, config.JWT_KEY)
+
+                        res.status(200).json({
+                            status: true,
+                            message: `Login berhasil`,
+                            data: { token }
+                        })
+                    }
+                    else {
+                        res.status(422).json({
+                            status: false,
+                            message: `Password salah`
+                        })
+                    }
+                })
+            } else {
+                res.status(403).json({
+                    status: false,
+                    message: 'Username yang anda masukkan tidak terdaftar'
+                })
+            }
+
+            // res.status(200).json({player})
+
+        }).catch((error) => {
+            
+        });
     }
 }
