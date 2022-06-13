@@ -39,7 +39,7 @@ module.exports = {
             }
 
             let tax = (10/100) * res_nominal._doc.price;
-            let grandTotal =  res_nominal._doc.price - tax;
+            let grandTotal =  res_nominal._doc.price + tax;
 
             const payload = {
                 historyVoucherTopup: {
@@ -73,6 +73,38 @@ module.exports = {
             await transaction.save();
 
             res.status(201).json({status:true, data:transaction});
+        } catch (error) {
+            res.status(500).json({ message: error.message || `Internal server error`});
+        }
+    },
+    history: async(req, res) => {
+
+        try {
+            const { status = '' } = req.query
+            let criteria = {}
+    
+            if(status.length) {
+                criteria = {
+                    ...criteria,
+                    status: {$regex : `${status}`, $options: 'i'}
+                }
+            }
+    
+            if(req.player._id) {
+                criteria = {
+                    ...criteria,
+                    player: req.player._id
+                }
+            }
+    
+            const history = await TransactionModel.find(criteria)
+            const total = await TransactionModel.aggregate([
+                {$match: criteria},
+                {$group: {_id: null, total: {$sum: '$grandTotal'}}}
+            ])
+      
+            res.status(200).json({ status: true, message: 'History transaksi ditemukan', data: history, total: total.length ? total[0].total : 0 })
+            
         } catch (error) {
             res.status(500).json({ message: error.message || `Internal server error`});
         }
