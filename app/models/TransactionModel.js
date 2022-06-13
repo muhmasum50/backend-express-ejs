@@ -26,7 +26,7 @@ let transactionSchema = mongoose.Schema({
         maxlength: [225, "Nama akun tidak boleh lebih dari 225 karakter"],
         minlength: [3, "Nama akun tidak boleh kurang dari 3 karakter"]
     },
-    text: {
+    tax: {
         type: Number,
         default: 0
     },
@@ -51,7 +51,6 @@ let transactionSchema = mongoose.Schema({
             maxlength: [13, "Nomor HP tidak boleh lebih dari 13 karakter"],
             minlength: [9, "Nomor HP tidak boleh kurang dari 9 karakter"]
         }
-
     },
     category: {
         type: mongoose.Schema.Types.ObjectId,
