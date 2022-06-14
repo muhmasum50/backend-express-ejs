@@ -1,5 +1,5 @@
-const PaymentModel = require('./../models/PaymentModel');
-const BankModel = require('./../models/BankModel');
+const NominalModel = require('../models/NominalModel');
+const coinType = [{name: 'Gold'}, {name : 'Diamond'},{name : 'Jewel'},{name : 'Silver'}];
 
 module.exports = {
     index: async(request, response) => {
@@ -8,88 +8,87 @@ module.exports = {
             const alertStatus = request.flash("alertStatus");
 
             const alert = { message: alertMessage, status: alertStatus };
-            const payment = await PaymentModel.find().populate('banks');
+            const nominal = await NominalModel.find();
 
-            response.render('content/admin/list_payment', {payment, alert});
+            response.render('content/admin/list_nominal', {nominal, alert});
         } catch(error) {
             request.flash('alertMessage', `${error.message}`);
             request.flash('alertStatus', 'danger');
-            response.redirect('/payment');
+            response.redirect('/nominal');
         }
     },
     create: async(request, response) => {
         try {
-            const banks = await BankModel.find();
-            response.render('content/admin/create_payment', { banks });
+            response.render('content/admin/create_nominal', {coinType});
         } catch(error) {
             request.flash('alertMessage', `${error.message}`);
             request.flash('alertStatus', 'danger');
-            response.redirect('/payment');
+            response.redirect('/nominal');
         }
     },
     store: async(request, response) => {
         try {
-            const { type, banks } = request.body;
-            const payment = PaymentModel({ type, banks });
-            await payment.save(); 
+            const { coinName, coinQuantity, price } = request.body;
+            const nominal = NominalModel({ coinName, coinQuantity, price });
+            await nominal.save(); 
 
-            request.flash('alertMessage', 'Berhasil menambahkan data payment');
+            request.flash('alertMessage', 'Berhasil menambahkan data nominal');
             request.flash('alertStatus', 'success');
 
-            response.redirect('/payment');
+            response.redirect('/nominal');
         } catch(error) {
             request.flash('alertMessage', `${error.message}`);
             request.flash('alertStatus', 'danger');
-            response.redirect('/payment');
+            response.redirect('/nominal');
         }
     },
     edit: async(request, response) => {
         try {
             const { id } = request.params;
-            const banks = await BankModel.find();
-            const payment = await PaymentModel.findOne({_id: id}).populate('banks');
+            const nominal = await NominalModel.findOne({_id: id});
 
-            response.render('content/admin/edit_payment', {payment, banks});
+            response.render('content/admin/edit_nominal', {nominal, coinType});
         } catch(error) {
             request.flash('alertMessage', `${error.message}`);
             request.flash('alertStatus', 'danger');
-            response.redirect('/payment');
+            response.redirect('/nominal');
         }
     },
     update: async(request, response) => {
         try {
             const { id } = request.params;
-            const { type, banks } = request.body;
+            const { coinName, coinQuantity, price } = request.body;
 
-            await PaymentModel.findOneAndUpdate({
+            const nominal = await NominalModel.findOneAndUpdate({
                 _id: id
-            }, {type, banks});
+            }, {coinName, coinQuantity, price});
 
-            request.flash('alertMessage', 'Berhasil mengubah data payment');
+            request.flash('alertMessage', 'Berhasil mengubah data nominal');
             request.flash('alertStatus', 'success');
 
-            response.redirect('/payment');
+            response.redirect('/nominal');
         } catch(error) {
             request.flash('alertMessage', `${error.message}`);
             request.flash('alertStatus', 'danger');
-            response.redirect('/payment');
+            response.redirect('/nominal');
         }
     },
     destroy: async (request, response) => {
         try {
             const { id } = request.params;
-            await PaymentModel.findOneAndDelete({
+            const nominal = await NominalModel.findOneAndDelete({
                 _id: id
             });
 
-            request.flash('alertMessage', 'Berhasil menghapus data payment');
+            request.flash('alertMessage', 'Berhasil menghapus data nominal');
             request.flash('alertStatus', 'success');
 
-            response.redirect('/payment');
+            response.redirect('/nominal');
         } catch(error) {
             request.flash('alertMessage', `${error.message}`);
             request.flash('alertStatus', 'danger');
-            response.redirect('/payment');
+            response.redirect('/nominal');
         }
     }
+
 }

@@ -1,7 +1,7 @@
 var express = require('express');
 const { route } = require('express/lib/application');
 var router = express.Router();
-const { index, create, store, edit, update, destroy } = require('../controllers/VoucherController');
+const { index, create, store, edit, update, destroy } = require('../controllers/voucher.controller');
 const multer = require('multer');
 const os = require('os')
 const { isLoginAdmin } = require('../middleware/auth');

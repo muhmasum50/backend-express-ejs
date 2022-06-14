@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { index, create, store, edit, update, destroy } = require('../controllers/PaymentController');
+const { index, create, store, edit, update, destroy } = require('../controllers/payment.controller');
 const { isLoginAdmin } = require('../middleware/auth');
 
 router.use(isLoginAdmin);

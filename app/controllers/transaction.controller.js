@@ -1,4 +1,4 @@
-const TransactionModel = require('./../models/TransactionModel');
+const TransactionModel = require('../models/TransactionModel');
 
 module.exports = {
     index: async(request, response) => {

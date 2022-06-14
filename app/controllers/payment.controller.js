@@ -1,4 +1,5 @@
-const BankModel = require('./../models/BankModel');
+const PaymentModel = require('../models/PaymentModel');
+const BankModel = require('../models/BankModel');
 
 module.exports = {
     index: async(request, response) => {
@@ -7,87 +8,88 @@ module.exports = {
             const alertStatus = request.flash("alertStatus");
 
             const alert = { message: alertMessage, status: alertStatus };
-            const bank = await BankModel.find();
+            const payment = await PaymentModel.find().populate('banks');
 
-            response.render('content/admin/list_bank', {bank, alert});
+            response.render('content/admin/list_payment', {payment, alert});
         } catch(error) {
             request.flash('alertMessage', `${error.message}`);
             request.flash('alertStatus', 'danger');
-            response.redirect('/bank');
+            response.redirect('/payment');
         }
     },
     create: async(request, response) => {
         try {
-            response.render('content/admin/create_bank');
+            const banks = await BankModel.find();
+            response.render('content/admin/create_payment', { banks });
         } catch(error) {
             request.flash('alertMessage', `${error.message}`);
             request.flash('alertStatus', 'danger');
-            response.redirect('/bank');
+            response.redirect('/payment');
         }
     },
     store: async(request, response) => {
         try {
-            const { bankName, bankNumber, name } = request.body;
-            const bank = BankModel({ name, bankName, bankNumber });
-            await bank.save(); 
+            const { type, banks } = request.body;
+            const payment = PaymentModel({ type, banks });
+            await payment.save(); 
 
-            request.flash('alertMessage', 'Berhasil menambahkan data bank');
+            request.flash('alertMessage', 'Berhasil menambahkan data payment');
             request.flash('alertStatus', 'success');
 
-            response.redirect('/bank');
+            response.redirect('/payment');
         } catch(error) {
             request.flash('alertMessage', `${error.message}`);
             request.flash('alertStatus', 'danger');
-            response.redirect('/bank');
+            response.redirect('/payment');
         }
     },
     edit: async(request, response) => {
         try {
             const { id } = request.params;
-            const bank = await BankModel.findOne({_id: id});
+            const banks = await BankModel.find();
+            const payment = await PaymentModel.findOne({_id: id}).populate('banks');
 
-            response.render('content/admin/edit_bank', {bank});
+            response.render('content/admin/edit_payment', {payment, banks});
         } catch(error) {
             request.flash('alertMessage', `${error.message}`);
             request.flash('alertStatus', 'danger');
-            response.redirect('/bank');
+            response.redirect('/payment');
         }
     },
     update: async(request, response) => {
         try {
             const { id } = request.params;
-            const { bankName, bankNumber, name } = request.body;
+            const { type, banks } = request.body;
 
-            await BankModel.findOneAndUpdate({
+            await PaymentModel.findOneAndUpdate({
                 _id: id
-            }, {bankName, bankNumber, name});
+            }, {type, banks});
 
-            request.flash('alertMessage', 'Berhasil mengubah data bank');
+            request.flash('alertMessage', 'Berhasil mengubah data payment');
             request.flash('alertStatus', 'success');
 
-            response.redirect('/bank');
+            response.redirect('/payment');
         } catch(error) {
             request.flash('alertMessage', `${error.message}`);
             request.flash('alertStatus', 'danger');
-            response.redirect('/bank');
+            response.redirect('/payment');
         }
     },
     destroy: async (request, response) => {
         try {
             const { id } = request.params;
-            await BankModel.findOneAndDelete({
+            await PaymentModel.findOneAndDelete({
                 _id: id
             });
 
-            request.flash('alertMessage', 'Berhasil menghapus data bank');
+            request.flash('alertMessage', 'Berhasil menghapus data payment');
             request.flash('alertStatus', 'success');
 
-            response.redirect('/bank');
+            response.redirect('/payment');
         } catch(error) {
             request.flash('alertMessage', `${error.message}`);
             request.flash('alertStatus', 'danger');
-            response.redirect('/bank');
+            response.redirect('/payment');
         }
     }
-
 }

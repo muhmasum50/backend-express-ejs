@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { index, login, register, logout } = require('../controllers/AuthController');
+const { index, login, register, logout } = require('../controllers/auth.controller');
 
 router.get('/', index);
 router.get('/login', index);

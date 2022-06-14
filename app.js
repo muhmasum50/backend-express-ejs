@@ -33,22 +33,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/adminlte', express.static(path.join(__dirname, '/node_modules/admin-lte/')))
 
 /** route */
-const dashboardRouter = require('./app/routes/DashboardRouter');
+const dashboardRouter = require('./app/routes/dashboard.router');
 app.use('/dashboard', dashboardRouter);
 const categoryRouter = require('./app/routes/category.router');
 app.use('/category', categoryRouter);
-const nominalRouter = require('./app/routes/NominalRouter');
+const nominalRouter = require('./app/routes/nominal.router');
 app.use('/nominal', nominalRouter);
-const voucherRouter = require('./app/routes/VoucherRouter');
+const voucherRouter = require('./app/routes/voucher.router');
 app.use('/voucher', voucherRouter);
-const bankRouter = require('./app/routes/BankRouter');
+const bankRouter = require('./app/routes/bank.router');
 app.use('/bank', bankRouter);
-const paymentRouter = require('./app/routes/PaymentRouter');
+const paymentRouter = require('./app/routes/payment.router');
 app.use('/payment', paymentRouter);
-const authRouter = require('./app/routes/AuthRouter');
+const authRouter = require('./app/routes/auth.router');
 app.use('/auth', authRouter);
 app.use('/', authRouter);
-const transactionRouter = require('./app/routes/TransactionRouter');
+const transactionRouter = require('./app/routes/transaction.router');
 app.use('/transaksi', transactionRouter);
 
 /** API */
