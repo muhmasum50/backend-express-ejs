@@ -14,6 +14,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(cors())
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
@@ -22,7 +23,6 @@ app.use(session({
 }))
 app.use(flash());
 app.use(methodOverride('_method'))
-app.use(cors())
 
 app.use(logger('dev'));
 app.use(express.json());
