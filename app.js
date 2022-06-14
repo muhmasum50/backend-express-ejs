@@ -35,7 +35,7 @@ app.use('/adminlte', express.static(path.join(__dirname, '/node_modules/admin-lt
 /** route */
 const dashboardRouter = require('./app/routes/DashboardRouter');
 app.use('/dashboard', dashboardRouter);
-const categoryRouter = require('./app/routes/CategoryRouter');
+const categoryRouter = require('./app/routes/category.router');
 app.use('/category', categoryRouter);
 const nominalRouter = require('./app/routes/NominalRouter');
 app.use('/nominal', nominalRouter);
