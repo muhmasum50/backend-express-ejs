@@ -11,14 +11,14 @@ module.exports = {
 
 
             if(request.session.user === null || request.session.user === undefined){
-                response.render('auth/login',{alert});
+                response.render('/',{alert});
             }else {
                 response.redirect('/dashboard');
             }
         } catch (error) {
             request.flash('alertMessage', `${error.message}`);
             request.flash('alertStatus', 'danger');
-            response.redirect('/auth/login');
+            response.redirect('/');
         }
     },
     login: async(request, response) => {
@@ -45,28 +45,28 @@ module.exports = {
                         request.flash('alertMessage', 'Mohon maaf akun anda belum aktif');
                         request.flash('alertStatus', 'danger');
             
-                        response.redirect('/auth/login');
+                        response.redirect('/');
                     }
                 }
 
                 request.flash('alertMessage', 'Password anda salah');
                 request.flash('alertStatus', 'danger');
-                response.redirect('/auth/login');
+                response.redirect('/');
             }
 
             request.flash('alertMessage', 'Akun tidak ditemukan');
             request.flash('alertStatus', 'danger');
-            response.redirect('/auth/login');
+            response.redirect('/');
             
         } catch (error) {
             request.flash('alertMessage', `${error.message}`);
             request.flash('alertStatus', 'danger');
-            response.redirect('/auth/login');
+            response.redirect('/');
         }
     },
     logout: (request, response) => {
         request.session.destroy();
-        response.redirect('/auth/login');
+        response.redirect('/');
     },
     register: async(request, response) => {
         try {
