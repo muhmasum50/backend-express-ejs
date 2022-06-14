@@ -62,6 +62,9 @@ app.use('/api/v1/transaksi', transactionAPIRouter);
 const dashboardAPIRouter = require('./app/routes/API/dashboard.api.router');
 app.use('/api/v1/dashboard', dashboardAPIRouter);
 
+const profileAPIRouter = require('./app/routes/API/profile.api.router');
+app.use('/api/v1/profile', profileAPIRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));

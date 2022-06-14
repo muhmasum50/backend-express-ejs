@@ -46,7 +46,7 @@ let transactionSchema = mongoose.Schema({
     historyUser: {
         name: {type: String, required: [true, 'Nama player harus diisi']},
         phoneNumber: {
-            type: Number,
+            type: String,
             required: [true, 'Nomor HP harus diisi'],
             maxlength: [13, "Nomor HP tidak boleh lebih dari 13 karakter"],
             minlength: [9, "Nomor HP tidak boleh kurang dari 9 karakter"]

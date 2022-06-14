@@ -29,8 +29,10 @@ let playerSchema = mongoose.Schema({
         default: 'user'
     },
     phoneNumber: {
-        type: Number,
-        required: [true, 'Nomor HP harus diisi']
+        type: String,
+        required: [true, 'Nomor HP harus diisi'],
+        maxlength: [13, "Nomor HP tidak boleh lebih dari 13 karakter"],
+        minlength: [9, "Nomor HP tidak boleh kurang dari 9 karakter"]
     },
     status: {
         type: String,
