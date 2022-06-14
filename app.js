@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+var cors = require('cors')
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -21,6 +22,7 @@ app.use(session({
 }))
 app.use(flash());
 app.use(methodOverride('_method'))
+app.use(cors())
 
 app.use(logger('dev'));
 app.use(express.json());
