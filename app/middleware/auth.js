@@ -1,7 +1,7 @@
 const config = require('../../config');
 const bcrypt = require('bcryptjs');
 const JSON_WEB_TOKEN = require('jsonwebtoken')
-const PlayerModel = require('../models/PlayerModel')
+const PlayerModel = require('../models/player.model')
 
 module.exports = {
     isLoginAdmin: (req, res, next) => {

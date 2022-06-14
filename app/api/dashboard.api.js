@@ -1,5 +1,5 @@
-const CategoryModel = require('../models/CategoryModel');
-const TransactionModel = require('./../models/TransactionModel');
+const CategoryModel = require('../models/category.model');
+const TransactionModel = require('./../models/transaction.model');
 
 module.exports = {
     index: async(req, res) => {

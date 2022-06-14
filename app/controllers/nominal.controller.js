@@ -1,4 +1,4 @@
-const NominalModel = require('../models/NominalModel');
+const NominalModel = require('../models/nominal.model');
 const coinType = [{name: 'Gold'}, {name : 'Diamond'},{name : 'Jewel'},{name : 'Silver'}];
 
 module.exports = {

@@ -1,9 +1,9 @@
 
-const BankModel = require('../models/BankModel')
-const VoucherModel = require('../models/VoucherModel')
-const NominalModel = require('../models/NominalModel')
-const PaymentModel = require('../models/PaymentModel')
-const TransactionModel = require('../models/TransactionModel')
+const BankModel = require('../models/bank.model')
+const VoucherModel = require('../models/voucher.model')
+const NominalModel = require('../models/nominal.model')
+const PaymentModel = require('../models/payment.model')
+const TransactionModel = require('../models/transaction.model')
 
 module.exports = {
     index: async(req, res) => {

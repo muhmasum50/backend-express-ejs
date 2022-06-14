@@ -1,5 +1,5 @@
-const VoucherModel = require('../models/VoucherModel');
-const CategoryModel = require('../models/CategoryModel');
+const VoucherModel = require('../models/voucher.model');
+const CategoryModel = require('../models/category.model');
 
 module.exports = {
     landingPage: async(req, res) => {

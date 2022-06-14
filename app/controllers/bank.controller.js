@@ -1,4 +1,4 @@
-const BankModel = require('../models/BankModel');
+const BankModel = require('../models/bank.model');
 
 module.exports = {
     index: async(request, response) => {

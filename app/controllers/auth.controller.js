@@ -1,5 +1,5 @@
 
-const UserModel = require('./../models/UserModel');
+const UserModel = require('../models/user.model');
 const bcrypt = require('bcryptjs');
 
 module.exports = {
