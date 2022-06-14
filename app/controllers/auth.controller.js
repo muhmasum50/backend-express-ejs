@@ -11,7 +11,7 @@ module.exports = {
 
 
             if(request.session.user === null || request.session.user === undefined){
-                response.render('/',{alert});
+                response.render('auth/login',{alert});
             }else {
                 response.redirect('/dashboard');
             }
