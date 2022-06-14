@@ -4,8 +4,13 @@ const CategoryModel = require('../models/CategoryModel');
 module.exports = {
     landingPage: async(req, res) => {
         try {
+            const path_dir = req.protocol + '://' + req.get('host') + `/uploads/`;
             const voucher = await VoucherModel.find().
             select('_id name status category thumbnail').populate('category');
+
+            voucher.forEach(voc => {
+                voc.thumbnail = voc.thumbnail.length ? path_dir + voc.thumbnail : ''
+            })
 
             res.status(200).json({data: voucher});
         } catch (error) {
@@ -30,6 +35,9 @@ module.exports = {
                 });
             }
 
+            const path_dir = req.protocol + '://' + req.get('host') + `/uploads/`;
+            voucher.thumbnail = voucher.thumbnail.length ? path_dir + voucher.thumbnail : ''
+                
             res.status(200).json({
                 status: true,
                 message:'Voucher game ditemukan', 

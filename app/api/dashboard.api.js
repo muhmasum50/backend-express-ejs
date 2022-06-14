@@ -28,5 +28,22 @@ module.exports = {
         } catch (error) {
             res.status(500).json({ status: false, message: error.message || `Internal server error`});
         }
+    },
+    profile: async(req, res) => {
+        try {
+            
+            const path_dir = req.protocol + '://' + req.get('host') + `/uploads/avatar/`;
+            const player = {
+                id : req.player._id,
+                username: req.player.username,
+                name: req.player.name,
+                email: req.player.email,
+                avatar: path_dir + req.player.avatar
+            }
+
+            res.status(200).json({status: true, message: 'Profile ditemukan', data: player})
+        } catch (error) {
+            res.status(500).json({ status: false, message: error.message || `Internal server error`});
+        }
     }
 }
