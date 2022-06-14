@@ -1,29 +1,65 @@
-[
-  {
-    "_id": {
-      "$oid": "60ae2431196ccd27e6587ab1"
-    },
-    "name": "ADMIN BWA 1",
-    "noRekening": "123456789",
-    "bankName": "BCA",
-    "__v": 0
+[{
+  "_id": {
+    "$oid": "62983ccfa05aaae6705c9453"
   },
-  {
-    "_id": {
-      "$oid": "60ae2431196ccd27e6587ab2"
-    },
-    "name": "ADMIN BWA 2",
-    "noRekening": "18273891273",
-    "bankName": "Mandiri",
-    "__v": 0
+  "name": "SDR Muhammad Ma'sum",
+  "bankName": "Bank BNI",
+  "bankNumber": {
+    "$numberLong": "2910001222"
   },
-  {
-    "_id": {
-      "$oid": "60ae2431196ccd27e6587ab3"
-    },
-    "name": "ADMIN BWA 3",
-    "noRekening": "2839172398",
-    "bankName": "Credit card",
-    "__v": 0
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1654144207736"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655089111444"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60ae2431196ccd27e6587ab1"
+  },
+  "name": "SDR Muhammad Ma'sum",
+  "noRekening": "123456789",
+  "bankName": "BCA",
+  "__v": 0,
+  "bankNumber": {
+    "$numberLong": "8213211231"
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1654225677385"
+    }
   }
-]
+},{
+  "_id": {
+    "$oid": "60ae2431196ccd27e6587ab2"
+  },
+  "name": "SDR Muhammad Ma'sum",
+  "noRekening": "18273891273",
+  "bankName": "Mandiri",
+  "__v": 0,
+  "bankNumber": null,
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1654225681591"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "60ae2431196ccd27e6587ab3"
+  },
+  "name": "SDR Muhammad Ma'sum",
+  "noRekening": "2839172398",
+  "bankName": "Credit card",
+  "__v": 0,
+  "bankNumber": null,
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1654225684803"
+    }
+  }
+}]

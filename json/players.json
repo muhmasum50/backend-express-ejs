@@ -11,10 +11,37 @@
   "name": "player bwa",
   "avatar": "ab6fd55ecf35e9fe2de4ae26069a28e6.png",
   "createdAt": {
-    "$date": "2021-06-06T15:48:57.946Z"
+    "$date": {
+      "$numberLong": "1622994537946"
+    }
   },
   "updatedAt": {
-    "$date": "2021-06-09T02:47:56.716Z"
+    "$date": {
+      "$numberLong": "1623206876716"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "629db00e36eabe5897d922b9"
+  },
+  "email": "muhmasum6661@gmail.co.id",
+  "username": "pixelgamingyt",
+  "name": "Muhammad Ma'sum",
+  "password": "$2a$10$/zHEgjYJsdePn.CfOO02uez9w/pqYyDr.lyZGTB79d/NbDaZO0fQi",
+  "avatar": "f97bb33ed6503d7707f7ca453731543c.png",
+  "role": "user",
+  "phoneNumber": "082232171383",
+  "status": "Y",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1654501390181"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655179191659"
+    }
   },
   "__v": 0
 }]

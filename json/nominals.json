@@ -54,10 +54,14 @@
   "price": 75000,
   "coinName": "Jewel",
   "createdAt": {
-    "$date": "2021-06-08T00:47:24.737Z"
+    "$date": {
+      "$numberLong": "1623113244737"
+    }
   },
   "updatedAt": {
-    "$date": "2021-06-08T00:47:24.737Z"
+    "$date": {
+      "$numberLong": "1623113244737"
+    }
   },
   "__v": 0
 },{
@@ -68,10 +72,14 @@
   "price": 125000,
   "coinName": "Jewel",
   "createdAt": {
-    "$date": "2021-06-08T00:47:47.143Z"
+    "$date": {
+      "$numberLong": "1623113267143"
+    }
   },
   "updatedAt": {
-    "$date": "2021-06-08T00:47:47.143Z"
+    "$date": {
+      "$numberLong": "1623113267143"
+    }
   },
   "__v": 0
 },{
@@ -82,10 +90,14 @@
   "price": 150000,
   "coinName": "Jewel",
   "createdAt": {
-    "$date": "2021-06-08T00:52:00.699Z"
+    "$date": {
+      "$numberLong": "1623113520699"
+    }
   },
   "updatedAt": {
-    "$date": "2021-06-08T00:52:00.699Z"
+    "$date": {
+      "$numberLong": "1623113520699"
+    }
   },
   "__v": 0
 },{
@@ -96,10 +108,14 @@
   "price": 175000,
   "coinName": "Jewel",
   "createdAt": {
-    "$date": "2021-06-08T00:52:32.921Z"
+    "$date": {
+      "$numberLong": "1623113552921"
+    }
   },
   "updatedAt": {
-    "$date": "2021-06-08T00:55:14.822Z"
+    "$date": {
+      "$numberLong": "1623113714822"
+    }
   },
   "__v": 0
 },{
@@ -110,10 +126,14 @@
   "price": 325000,
   "coinName": "Jewel",
   "createdAt": {
-    "$date": "2021-06-08T00:52:44.241Z"
+    "$date": {
+      "$numberLong": "1623113564241"
+    }
   },
   "updatedAt": {
-    "$date": "2021-06-08T00:52:44.241Z"
+    "$date": {
+      "$numberLong": "1623113564241"
+    }
   },
   "__v": 0
 },{
@@ -124,10 +144,14 @@
   "price": 125000,
   "coinName": "Diamond",
   "createdAt": {
-    "$date": "2021-06-08T00:53:08.196Z"
+    "$date": {
+      "$numberLong": "1623113588196"
+    }
   },
   "updatedAt": {
-    "$date": "2021-06-08T00:53:27.516Z"
+    "$date": {
+      "$numberLong": "1623113607516"
+    }
   },
   "__v": 0
 },{
@@ -138,10 +162,14 @@
   "price": 225000,
   "coinName": "Diamond",
   "createdAt": {
-    "$date": "2021-06-08T00:53:17.816Z"
+    "$date": {
+      "$numberLong": "1623113597816"
+    }
   },
   "updatedAt": {
-    "$date": "2021-06-08T00:53:37.914Z"
+    "$date": {
+      "$numberLong": "1623113617914"
+    }
   },
   "__v": 0
 },{
@@ -152,10 +180,14 @@
   "price": 300000,
   "coinName": "Diamond",
   "createdAt": {
-    "$date": "2021-06-08T00:53:49.231Z"
+    "$date": {
+      "$numberLong": "1623113629231"
+    }
   },
   "updatedAt": {
-    "$date": "2021-06-08T00:53:58.711Z"
+    "$date": {
+      "$numberLong": "1623113638711"
+    }
   },
   "__v": 0
 },{
@@ -166,10 +198,14 @@
   "price": 400000,
   "coinName": "Diamond",
   "createdAt": {
-    "$date": "2021-06-08T00:54:31.870Z"
+    "$date": {
+      "$numberLong": "1623113671870"
+    }
   },
   "updatedAt": {
-    "$date": "2021-06-08T00:54:40.488Z"
+    "$date": {
+      "$numberLong": "1623113680488"
+    }
   },
   "__v": 0
 },{
@@ -180,10 +216,14 @@
   "price": 500000,
   "coinName": "Diamond",
   "createdAt": {
-    "$date": "2021-06-08T00:54:58.374Z"
+    "$date": {
+      "$numberLong": "1623113698374"
+    }
   },
   "updatedAt": {
-    "$date": "2021-06-08T00:55:24.901Z"
+    "$date": {
+      "$numberLong": "1623113724901"
+    }
   },
   "__v": 0
 }]

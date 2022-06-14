@@ -1,13 +1,13 @@
 [{
-    "_id": {
-      "$oid": "60acf086e2e33c145dff9e65"
-    },
-    "role": "admin",
-    "status": "Y",
-    "email": "admin@admin.com",
-    "password": "$2a$10$2ATMEfhS1nt5c3VXgzlaqe3epJFTuY7.oKpORdOgqtxFNYLcndCFW",
-    "phoneNumber": "08100000011",
-    "username": "admin",
-    "name": "admin pixel",
-    "__v": 0
-  }]
+  "_id": {
+    "$oid": "60acf086e2e33c145dff9e65"
+  },
+  "role": "admin",
+  "status": "Y",
+  "email": "admin@admin.com",
+  "password": "$2a$10$2ATMEfhS1nt5c3VXgzlaqe3epJFTuY7.oKpORdOgqtxFNYLcndCFW",
+  "phoneNumber": "08100000011",
+  "username": "admin",
+  "name": "admin pixel",
+  "__v": 0
+}]
