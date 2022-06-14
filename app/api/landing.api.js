@@ -12,7 +12,7 @@ module.exports = {
                 voc.thumbnail = voc.thumbnail.length ? path_dir + voc.thumbnail : ''
             })
 
-            res.status(200).json({data: voucher, req:req});
+            res.status(200).json({data: voucher});
         } catch (error) {
 
             res.status(500).json({ message: error.message || `Internal server error`});
