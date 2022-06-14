@@ -9,6 +9,31 @@ module.exports = {
     index: async(req, res) => {
         res.status(201).json({data : []});
     },
+    detail: async(req, res) => {
+
+        try {
+            const { id } = req.params
+            const historyTranscation = await TransactionModel.findOne({_id: id, player: req.player._id})
+
+            if(!historyTranscation) {
+                return res.status(404).json({
+                    status: false,
+                    message: 'Detail data transaksi tidak ditemukan',
+                    data: historyTranscation,
+                })
+            }
+
+            return res.status(200).json({
+                status: true,
+                message: 'Detail data transaksi ditemukan',
+                data: historyTranscation,
+            })
+
+        } catch (error) {
+            res.status(500).json({ status:false, message: error.message || `Internal server error`});
+        }
+
+    },
     checkout: async(req, res) => {
         try {
             
@@ -65,7 +90,7 @@ module.exports = {
                     name: res_voucher._doc.user?.name,
                     phoneNumber: res_voucher._doc.user?.phoneNumber
                 },
-                category: res_voucher._doc.categiry?._id,
+                category: res_voucher._doc.category?._id,
                 user: res_voucher._doc.user?.id
             }
 
@@ -74,7 +99,7 @@ module.exports = {
 
             res.status(201).json({status:true, data:transaction});
         } catch (error) {
-            res.status(500).json({ message: error.message || `Internal server error`});
+            res.status(500).json({ status:false, message: error.message || `Internal server error`});
         }
     },
     history: async(req, res) => {
@@ -106,7 +131,7 @@ module.exports = {
             res.status(200).json({ status: true, message: 'History transaksi ditemukan', data: history, total: total.length ? total[0].total : 0 })
             
         } catch (error) {
-            res.status(500).json({ message: error.message || `Internal server error`});
+            res.status(500).json({ status: false, message: error.message || `Internal server error`});
         }
     }
 }
