@@ -38,7 +38,9 @@ module.exports = {
                 username: req.player.username,
                 name: req.player.name,
                 email: req.player.email,
-                avatar: path_dir + req.player.avatar
+                avatar: path_dir + req.player.avatar,
+                phoneNumber: req.player.phoneNumber,
+                stauts: req.player.status
             }
 
             res.status(200).json({status: true, message: 'Profile ditemukan', data: player})
